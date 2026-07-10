@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07091a" />
+  <meta name="description" content="Bodhirukkara Dhamma School — Official Online Learning Portal" />
+  <title>Bodhirukkara Dhamma School</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+
+    /* ═══════════════════════════════════════════════════════════════
+       BODHIRUKKARA DHAMMA SCHOOL — index.html
+       Premium Dark Learning Portal  |  github: gridaxiswebworl78
+       ═══════════════════════════════════════════════════════════════ */
+
+    /* ── Design Tokens ──────────────────────────────────────────── */
+    :root {
+      --bg-base:         #07091a;
+      --bg-card:         #0f1b32;
+      --bg-card-hover:   #132040;
+
+      --accent:          #3b82f6;
+      --accent-light:    #60a5fa;
+      --accent-dim:      rgba(59, 130, 246, 0.12);
+      --accent-glow:     rgba(59, 130, 246, 0.35);
+
+      --pdf:             #dc2626;
+      --pdf-hover:       #ef4444;
+      --pdf-glow:        rgba(220, 38, 38, 0.32);
+
+      --text-primary:    #f1f5f9;
+      --text-secondary:  #94a3b8;
+      --text-muted:      #4b5563;
+
+      --border-card:     rgba(59, 130, 246, 0.20);
+      --border-line:     rgba(255, 255, 255, 0.06);
+
+      --radius-card:     14px;
+      --radius-sm:       8px;
+    }
+
+    /* ── Reset ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-base);
+      background-image:
+        radial-gradient(ellipse 110% 45% at 50% 0%,  rgba(59,130,246,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse  55% 30% at 85% 85%, rgba(99,102,241,0.07) 0%, transparent 55%);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Slim custom scrollbar (WebKit) */
+    ::-webkit-scrollbar             { width: 6px; }
+    ::-webkit-scrollbar-track       { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb       { background: rgba(59,130,246,0.3); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    /* ── HEADER ─────────────────────────────────────────────────── */
+    .site-header {
+      padding: 3.5rem 1.5rem 2.75rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .site-header::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: min(760px, 92%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(59,130,246,0.55), transparent);
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.28rem 1rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(59,130,246,0.28);
+      border-radius: 99px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .header-badge::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1;   transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .school-name {
+      font-size: clamp(1.5rem, 4.5vw, 2.55rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(135deg, #f1f5f9 25%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .school-sub {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── SELECTOR SECTION ───────────────────────────────────────── */
+    .selector-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 0;
+    }
+
+    .selector-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .select-wrap { position: relative; }
+
+    .select-wrap::after {
+      content: "▾";
+      position: absolute;
+      right: 1.15rem; top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent-light);
+      pointer-events: none;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    #lessonSelect {
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1.5px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      padding: 0.92rem 3rem 0.92rem 1.3rem;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #lessonSelect:hover,
+    #lessonSelect:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    #lessonSelect option {
+      background: #111d30;
+      color: var(--text-primary);
+    }
+
+    /* ── CONTENT AREA ───────────────────────────────────────────── */
+    .content-area {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+
+    /* Empty / prompt state */
+    .prompt-state {
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+    }
+
+    .prompt-icon {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 1.25rem;
+      opacity: 0.65;
+    }
+
+    .prompt-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.45rem;
+    }
+
+    .prompt-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Lesson section heading */
+    .lesson-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .heading-dot {
+      flex-shrink: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .heading-text {
+      font-size: clamp(0.95rem, 2.5vw, 1.12rem);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .heading-meta {
+      margin-left: auto;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    /* ── CARDS GRID ─────────────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+
+    @media (max-width: 580px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── VIDEO CARD ─────────────────────────────────────────────── */
+    .video-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-card);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+
+      opacity: 0;
+      transform: translateY(18px);
+      animation: cardIn 0.42s ease forwards;
+    }
+
+    .video-card:nth-child(1) { animation-delay: 0.04s; }
+    .video-card:nth-child(2) { animation-delay: 0.10s; }
+    .video-card:nth-child(3) { animation-delay: 0.16s; }
+    .video-card:nth-child(4) { animation-delay: 0.22s; }
+
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 130, 246, 0.6);
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.5),
+        0 0  0   1px rgba(59, 130, 246, 0.15),
+        0 0  26px var(--accent-glow);
+    }
+
+    /* Signature gradient stripe */
+    .card-stripe {
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent) 0%, #818cf8 55%, #a78bfa 100%);
+      flex-shrink: 0;
+    }
+
+    .card-header {
+      padding: 0.8rem 1rem 0.55rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .rec-badge {
+      flex-shrink: 0;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      background: var(--accent-dim);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 4px;
+      padding: 0.18rem 0.48rem;
+    }
+
+    .card-title {
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    /* 16:9 responsive iframe */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+      flex-shrink: 0;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Card footer */
+    .card-footer {
+      padding: 0.75rem 0.9rem 0.9rem;
+    }
+
+    .pdf-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      width: 100%;
+      padding: 0.72rem 1rem;
+      background: var(--pdf);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.83rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: background 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease;
+    }
+
+    .pdf-btn:hover {
+      background: var(--pdf-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px var(--pdf-glow);
+    }
+
+    .pdf-btn:active { transform: translateY(0); box-shadow: none; }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    .site-footer {
+      text-align: center;
+      padding: 1.4rem 1.5rem 2.5rem;
+      border-top: 1px solid var(--border-line);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .site-header      { padding: 2.5rem 1.25rem 2rem; }
+      .selector-section { padding-top: 2rem; }
+      .content-area     { padding-top: 1.75rem; padding-bottom: 3.5rem; }
+      .card-title       { font-size: 0.82rem; }
+      .pdf-btn          { font-size: 0.78rem; padding: 0.65rem 0.85rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .video-card { animation: none; opacity: 1; transform: none; }
+      .header-badge::before { animation: none; }
+      .video-card:hover, .pdf-btn:hover { transform: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════════════════ -->
+  <header class="site-header">
+    <span class="header-badge">Official Learning Portal</span>
+    <h1 class="school-name">Bodhirukkara Dhamma School</h1>
+    <p class="school-sub">Sri Bodhirukkara Dhamma Vidyalaya</p>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       LESSON SELECTOR
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="selector-section">
+    <label for="lessonSelect" class="selector-label">Select Lesson:</label>
+    <div class="select-wrap">
+      <select id="lessonSelect">
+        <option value="">-- Choose a Lesson --</option>
+        <!-- Options injected by JavaScript -->
+      </select>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CONTENT AREA  ←  JavaScript injects lesson cards here
+       ═══════════════════════════════════════════════════════════ -->
+  <main class="content-area" id="contentArea">
+    <div class="prompt-state">
+      <span class="prompt-icon">📚</span>
+      <p class="prompt-title">Select a Lesson Above</p>
+      <p class="prompt-hint">Choose a lesson from the dropdown to view its recordings and study materials.</p>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    &copy; 2024 Bodhirukkara Dhamma School &nbsp;&middot;&nbsp; All Rights Reserved
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       JAVASCRIPT
+       ═══════════════════════════════════════════════════════════ -->
+  <script>
+
+    /* ╔══════════════════════════════════════════════════════════╗
+       ║  LESSON DATA  ←  EDIT THIS OBJECT TO UPDATE CONTENT     ║
+       ╠══════════════════════════════════════════════════════════╣
+       ║  HOW TO UPDATE:                                          ║
+       ║  ─────────────                                           ║
+       ║  videoId  →  Your YouTube Video ID.                      ║
+       ║              From: youtube.com/watch?v=XXXXX             ║
+       ║              Use:  videoId: "XXXXX"                      ║
+       ║                                                          ║
+       ║  pdf      →  Path to PDF relative to repo root.          ║
+       ║              Keep files in a /pdfs/ folder.              ║
+       ║              Example: pdf: "pdfs/lesson-01-rec-01.pdf"   ║
+       ╚══════════════════════════════════════════════════════════╝ */
+
+    const lessonData = {
+
+      // ── LESSON 01 ─────────────────────────────────────────────
+      1: { title: "Lesson 01", recordings: [
+        { title: "Recording 01", videoId: "LESSON_01_REC_01", pdf: "pdfs/lesson-01-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_01_REC_02", pdf: "pdfs/lesson-01-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_01_REC_03", pdf: "pdfs/lesson-01-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_01_REC_04", pdf: "pdfs/lesson-01-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 02 ─────────────────────────────────────────────
+      2: { title: "Lesson 02", recordings: [
+        { title: "Recording 01", videoId: "LESSON_02_REC_01", pdf: "pdfs/lesson-02-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_02_REC_02", pdf: "pdfs/lesson-02-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_02_REC_03", pdf: "pdfs/lesson-02-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_02_REC_04", pdf: "pdfs/lesson-02-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 03 ─────────────────────────────────────────────
+      3: { title: "Lesson 03", recordings: [
+        { title: "Recording 01", videoId: "LESSON_03_REC_01", pdf: "pdfs/lesson-03-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_03_REC_02", pdf: "pdfs/lesson-03-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_03_REC_03", pdf: "pdfs/lesson-03-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_03_REC_04", pdf: "pdfs/lesson-03-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 04 ─────────────────────────────────────────────
+      4: { title: "Lesson 04", recordings: [
+        { title: "Recording 01", videoId: "LESSON_04_REC_01", pdf: "pdfs/lesson-04-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_04_REC_02", pdf: "pdfs/lesson-04-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_04_REC_03", pdf: "pdfs/lesson-04-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_04_REC_04", pdf: "pdfs/lesson-04-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 05 ─────────────────────────────────────────────
+      5: { title: "Lesson 05", recordings: [
+        { title: "Recording 01", videoId: "LESSON_05_REC_01", pdf: "pdfs/lesson-05-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_05_REC_02", pdf: "pdfs/lesson-05-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_05_REC_03", pdf: "pdfs/lesson-05-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_05_REC_04", pdf: "pdfs/lesson-05-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 06 ─────────────────────────────────────────────
+      6: { title: "Lesson 06", recordings: [
+        { title: "Recording 01", videoId: "LESSON_06_REC_01", pdf: "pdfs/lesson-06-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_06_REC_02", pdf: "pdfs/lesson-06-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_06_REC_03", pdf: "pdfs/lesson-06-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_06_REC_04", pdf: "pdfs/lesson-06-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 07 ─────────────────────────────────────────────
+      7: { title: "Lesson 07", recordings: [
+        { title: "Recording 01", videoId: "LESSON_07_REC_01", pdf: "pdfs/lesson-07-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_07_REC_02", pdf: "pdfs/lesson-07-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_07_REC_03", pdf: "pdfs/lesson-07-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_07_REC_04", pdf: "pdfs/lesson-07-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 08 ─────────────────────────────────────────────
+      8: { title: "Lesson 08", recordings: [
+        { title: "Recording 01", videoId: "LESSON_08_REC_01", pdf: "pdfs/lesson-08-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_08_REC_02", pdf: "pdfs/lesson-08-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_08_REC_03", pdf: "pdfs/lesson-08-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_08_REC_04", pdf: "pdfs/lesson-08-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 09 ─────────────────────────────────────────────
+      9: { title: "Lesson 09", recordings: [
+        { title: "Recording 01", videoId: "LESSON_09_REC_01", pdf: "pdfs/lesson-09-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_09_REC_02", pdf: "pdfs/lesson-09-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_09_REC_03", pdf: "pdfs/lesson-09-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_09_REC_04", pdf: "pdfs/lesson-09-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 10 ─────────────────────────────────────────────
+      10: { title: "Lesson 10", recordings: [
+        { title: "Recording 01", videoId: "LESSON_10_REC_01", pdf: "pdfs/lesson-10-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_10_REC_02", pdf: "pdfs/lesson-10-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_10_REC_03", pdf: "pdfs/lesson-10-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_10_REC_04", pdf: "pdfs/lesson-10-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 11 ─────────────────────────────────────────────
+      11: { title: "Lesson 11", recordings: [
+        { title: "Recording 01", videoId: "LESSON_11_REC_01", pdf: "pdfs/lesson-11-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_11_REC_02", pdf: "pdfs/lesson-11-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_11_REC_03", pdf: "pdfs/lesson-11-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_11_REC_04", pdf: "pdfs/lesson-11-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 12 ─────────────────────────────────────────────
+      12: { title: "Lesson 12", recordings: [
+        { title: "Recording 01", videoId: "LESSON_12_REC_01", pdf: "pdfs/lesson-12-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_12_REC_02", pdf: "pdfs/lesson-12-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_12_REC_03", pdf: "pdfs/lesson-12-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_12_REC_04", pdf: "pdfs/lesson-12-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 13 ─────────────────────────────────────────────
+      13: { title: "Lesson 13", recordings: [
+        { title: "Recording 01", videoId: "LESSON_13_REC_01", pdf: "pdfs/lesson-13-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_13_REC_02", pdf: "pdfs/lesson-13-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_13_REC_03", pdf: "pdfs/lesson-13-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_13_REC_04", pdf: "pdfs/lesson-13-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 14 ─────────────────────────────────────────────
+      14: { title: "Lesson 14", recordings: [
+        { title: "Recording 01", videoId: "LESSON_14_REC_01", pdf: "pdfs/lesson-14-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_14_REC_02", pdf: "pdfs/lesson-14-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_14_REC_03", pdf: "pdfs/lesson-14-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_14_REC_04", pdf: "pdfs/lesson-14-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 15 ─────────────────────────────────────────────
+      15: { title: "Lesson 15", recordings: [
+        { title: "Recording 01", videoId: "LESSON_15_REC_01", pdf: "pdfs/lesson-15-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_15_REC_02", pdf: "pdfs/lesson-15-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_15_REC_03", pdf: "pdfs/lesson-15-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_15_REC_04", pdf: "pdfs/lesson-15-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 16 ─────────────────────────────────────────────
+      16: { title: "Lesson 16", recordings: [
+        { title: "Recording 01", videoId: "LESSON_16_REC_01", pdf: "pdfs/lesson-16-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_16_REC_02", pdf: "pdfs/lesson-16-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_16_REC_03", pdf: "pdfs/lesson-16-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_16_REC_04", pdf: "pdfs/lesson-16-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 17 ─────────────────────────────────────────────
+      17: { title: "Lesson 17", recordings: [
+        { title: "Recording 01", videoId: "LESSON_17_REC_01", pdf: "pdfs/lesson-17-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_17_REC_02", pdf: "pdfs/lesson-17-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_17_REC_03", pdf: "pdfs/lesson-17-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_17_REC_04", pdf: "pdfs/lesson-17-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 18 ─────────────────────────────────────────────
+      18: { title: "Lesson 18", recordings: [
+        { title: "Recording 01", videoId: "LESSON_18_REC_01", pdf: "pdfs/lesson-18-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_18_REC_02", pdf: "pdfs/lesson-18-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_18_REC_03", pdf: "pdfs/lesson-18-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_18_REC_04", pdf: "pdfs/lesson-18-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 19 ─────────────────────────────────────────────
+      19: { title: "Lesson 19", recordings: [
+        { title: "Recording 01", videoId: "LESSON_19_REC_01", pdf: "pdfs/lesson-19-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_19_REC_02", pdf: "pdfs/lesson-19-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_19_REC_03", pdf: "pdfs/lesson-19-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_19_REC_04", pdf: "pdfs/lesson-19-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 20 ─────────────────────────────────────────────
+      20: { title: "Lesson 20", recordings: [
+        { title: "Recording 01", videoId: "LESSON_20_REC_01", pdf: "pdfs/lesson-20-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_20_REC_02", pdf: "pdfs/lesson-20-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_20_REC_03", pdf: "pdfs/lesson-20-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_20_REC_04", pdf: "pdfs/lesson-20-rec-04.pdf" },
+      ]},
+
+      // ── LESSON 21 ─────────────────────────────────────────────
+      21: { title: "Lesson 21", recordings: [
+        { title: "Recording 01", videoId: "LESSON_21_REC_01", pdf: "pdfs/lesson-21-rec-01.pdf" },
+        { title: "Recording 02", videoId: "LESSON_21_REC_02", pdf: "pdfs/lesson-21-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_21_REC_03", pdf: "pdfs/lesson-21-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_21_REC_04", pdf: "pdfs/lesson-21-rec-04.pdf" },
+      ]},
+
+    }; /* ── END lessonData ─────────────────────────────────── */
+
+
+    /* ── BUILD DROPDOWN OPTIONS ──────────────────────────────── */
+    const select      = document.getElementById('lessonSelect');
+    const contentArea = document.getElementById('contentArea');
+
+    for (let i = 1; i <= 21; i++) {
+      const num = String(i).padStart(2, '0');
+      const opt = document.createElement('option');
+      opt.value       = i;
+      opt.textContent = `Lesson ${num}`;
+      select.appendChild(opt);
+    }
+
+
+    /* ── RENDER LESSON ───────────────────────────────────────── */
+    function renderLesson(num) {
+      const lesson = lessonData[num];
+      if (!lesson) return;
+
+      const cardsHTML = lesson.recordings.map((rec, i) => `
+        <article class="video-card">
+          <div class="card-stripe"></div>
+          <div class="card-header">
+            <span class="rec-badge">REC ${String(i + 1).padStart(2, '0')}</span>
+            <span class="card-title">${rec.title}</span>
+          </div>
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/${rec.videoId}?rel=0&modestbranding=1"
+              title="${lesson.title} &middot; ${rec.title}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div class="card-footer">
+            <a href="${rec.pdf}" class="pdf-btn" target="_blank" rel="noopener noreferrer">
+              &#128196; Download Notes (PDF)
+            </a>
+          </div>
+        </article>
+      `).join('');
+
+      contentArea.innerHTML = `
+        <div class="lesson-heading">
+          <span class="heading-dot"></span>
+          <span class="heading-text">${lesson.title}</span>
+          <span class="heading-meta">REC 01 &ndash; 04</span>
+        </div>
+        <div class="cards-grid">${cardsHTML}</div>
+      `;
+    }
+
+
+    /* ── DROPDOWN CHANGE EVENT ───────────────────────────────── */
+    select.addEventListener('change', function () {
+      const val = parseInt(this.value, 10);
+
+      if (!val) {
+        contentArea.innerHTML = `
+          <div class="prompt-state">
+            <span class="prompt-icon">&#128218;</span>
+            <p class="prompt-title">Select a Lesson Above</p>
+            <p class="prompt-hint">Choose a lesson from the dropdown to view its recordings and study materials.</p>
+          </div>`;
+        return;
+      }
+
+      renderLesson(val);
+
+      setTimeout(() => {
+        contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    });
+
+  </script>
+</body>
+</html>
