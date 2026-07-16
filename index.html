@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#07091a" />
   <meta name="description" content="Sri Bodhirukkara Dhamma School — Official Online Learning Portal" />
-  <title> sri Bodhirukkarama Dhamma School</title>
+  <title>Sri Bodhirukkarama Dhamma School</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -392,6 +392,209 @@
       letter-spacing: 0.04em;
     }
 
+    /* ────────────────────────────────────────────────────────────── */
+    /* ──  CHATBOT WIDGET STYLES                                    ── */
+    /* ────────────────────────────────────────────────────────────── */
+
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .chatbot-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.6);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chatbot-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(59, 130, 246, 0.8);
+    }
+
+    .chatbot-window {
+      position: absolute;
+      bottom: 90px;
+      right: 0;
+      width: 380px;
+      height: 550px;
+      background: var(--bg-card);
+      border-radius: 14px;
+      border: 1px solid var(--border-card);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+      display: none;
+      flex-direction: column;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+    }
+
+    .chatbot-window.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @media (max-width: 480px) {
+      .chatbot-window {
+        width: calc(100vw - 40px);
+        right: 50%;
+        transform: translateX(50%) scale(0.8);
+      }
+
+      .chatbot-window.active {
+        transform: translateX(50%) scale(1);
+      }
+    }
+
+    .chatbot-header {
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      color: white;
+      padding: 1rem;
+      border-radius: 14px 14px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chatbot-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .chatbot-close:hover {
+      transform: rotate(90deg);
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .chatbot-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chatbot-messages::-webkit-scrollbar-thumb {
+      background: rgba(59, 130, 246, 0.4);
+      border-radius: 2px;
+    }
+
+    .message {
+      display: flex;
+      gap: 0.6rem;
+      animation: messageSlide 0.3s ease;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message-bubble {
+      max-width: 75%;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .message.bot .message-bubble {
+      background: var(--bg-base);
+      color: var(--text-primary);
+      border: 1px solid var(--accent-dim);
+    }
+
+    .message.user .message-bubble {
+      background: var(--accent);
+      color: white;
+    }
+
+    .chatbot-input-area {
+      border-top: 1px solid var(--border-line);
+      padding: 0.8rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    #chatbotInput {
+      flex: 1;
+      border: 1px solid var(--accent-dim);
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    #chatbotInput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-dim);
+    }
+
+    #chatbotInput::placeholder {
+      color: var(--text-muted);
+    }
+
+    .chatbot-send {
+      background: var(--accent);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chatbot-send:hover {
+      background: #2563eb;
+    }
+
     /* ── RESPONSIVE ─────────────────────────────────────────────── */
     @media (max-width: 480px) {
       .site-header      { padding: 2.5rem 1.25rem 2rem; }
@@ -399,12 +602,20 @@
       .content-area     { padding-top: 1.75rem; padding-bottom: 3.5rem; }
       .card-title       { font-size: 0.82rem; }
       .pdf-btn          { font-size: 0.78rem; padding: 0.65rem 0.85rem; }
+      
+      .chatbot-toggle {
+        width: 54px;
+        height: 54px;
+        bottom: 16px;
+        right: 16px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .video-card { animation: none; opacity: 1; transform: none; }
       .header-badge::before { animation: none; }
       .video-card:hover, .pdf-btn:hover { transform: none; }
+      .message { animation: none; }
     }
 
   </style>
@@ -416,8 +627,8 @@
        ═══════════════════════════════════════════════════════════ -->
   <header class="site-header">
     <span class="header-badge">Official Learning Portal</span>
-    <h1 class="school-name">  Sri Bodhirukkarama Dhamma School</h1>
-    <p class="school-sub"> daham pasal final exam booster </p>
+    <h1 class="school-name">Sri Bodhirukkarama Dhamma School</h1>
+    <p class="school-sub">Daham Pasal Final Exam Booster</p>
   </header>
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -428,13 +639,12 @@
     <div class="select-wrap">
       <select id="lessonSelect">
         <option value="">-- Choose a Lesson --</option>
-        <!-- Options injected by JavaScript -->
       </select>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       CONTENT AREA  ←  JavaScript injects lesson cards here
+       CONTENT AREA
        ═══════════════════════════════════════════════════════════ -->
   <main class="content-area" id="contentArea">
     <div class="prompt-state">
@@ -448,8 +658,37 @@
        FOOTER
        ═══════════════════════════════════════════════════════════ -->
   <footer class="site-footer">
-    &copy; 2026 Sri Bodhirukkarama Dhamma School &nbsp;&middot;&nbsp; All Rights Reserved by Grid axiswebworking team lk
+    &copy; 2026 Sri Bodhirukkarama Dhamma School &nbsp;&middot;&nbsp; All Rights Reserved by Grid Axiswebworking Team LK
   </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CHATBOT WIDGET
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="chatbot-container">
+    <button class="chatbot-toggle" id="chatbotToggle" title="Open Chat">💬</button>
+    
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chatbot-header">
+        <h3>Chat Assistant</h3>
+        <button class="chatbot-close" id="chatbotClose">✕</button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot">
+          <div class="message-bubble">
+            Hello! 👋 Welcome to Sri Bodhirukkarama Dhamma School. How can I help you today? Feel free to ask about lessons, study materials, or anything else!
+          </div>
+        </div>
+      </div>
+      <div class="chatbot-input-area">
+        <input
+          type="text"
+          id="chatbotInput"
+          placeholder="Type a message..."
+          autocomplete="off">
+        <button class="chatbot-send" id="chatbotSend">➤</button>
+      </div>
+    </div>
+  </div>
 
 
   <!-- ═══════════════════════════════════════════════════════════
@@ -458,17 +697,7 @@
   <script>
 
     /* ╔══════════════════════════════════════════════════════════╗
-       ║  LESSON DATA  ←  EDIT THIS OBJECT TO UPDATE CONTENT     ║
-       ╠══════════════════════════════════════════════════════════╣
-       ║  HOW TO UPDATE:                                          ║
-       ║  ─────────────                                           ║
-       ║  videoId  →  Your YouTube Video ID.                      ║
-       ║              From: youtube.com/watch?v=XXXXX             ║
-       ║              Use:  videoId: "XXXXX"                      ║
-       ║                                                          ║
-       ║  pdf      →  Path to PDF relative to repo root.          ║
-       ║              Keep files in a /pdfs/ folder.              ║
-       ║              Example: pdf: "pdfs/lesson-01-rec-01.pdf"   ║
+       ║  LESSON DATA  ←  EDIT YOUTUBE IDs & PDF PATHS HERE      ║
        ╚══════════════════════════════════════════════════════════╝ */
 
     const lessonData = {
@@ -484,21 +713,26 @@
       // ── LESSON 02 ─────────────────────────────────────────────
       2: { title: "Lesson 02", recordings: [
         { title: "Recording 01", videoId: "8cqO8Owj4os", pdf: "pdfs/Budu_Samaya_Note_5.pdf" },
-      
+        { title: "Recording 02", videoId: "LESSON_02_REC_02", pdf: "pdfs/lesson-02-rec-02.pdf" },
+        { title: "Recording 03", videoId: "LESSON_02_REC_03", pdf: "pdfs/lesson-02-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_02_REC_04", pdf: "pdfs/lesson-02-rec-04.pdf" },
       ]},
 
       // ── LESSON 03 ─────────────────────────────────────────────
       3: { title: "Lesson 03", recordings: [
         { title: "Recording 01", videoId: "pd8cpD0iEnc", pdf: "pdfs/Budu_Samaya_Note_6.pdf" },
         { title: "Recording 02", videoId: "hNz1MHmNM78", pdf: "pdfs/Budu_Samaya_Note_7.pdf" },
-
+        { title: "Recording 03", videoId: "LESSON_03_REC_03", pdf: "pdfs/lesson-03-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_03_REC_04", pdf: "pdfs/lesson-03-rec-04.pdf" },
       ]},
 
       // ── LESSON 04 ─────────────────────────────────────────────
       4: { title: "Lesson 04", recordings: [
         { title: "Recording 01", videoId: "t6wAk68jb64", pdf: "pdfs/lesson-04-rec-01.pdf" },
         { title: "Recording 02", videoId: "cCaVIA0FcbU", pdf: "pdfs/lesson-04-rec-02.pdf" },
-      
+        { title: "Recording 03", videoId: "LESSON_04_REC_03", pdf: "pdfs/lesson-04-rec-03.pdf" },
+        { title: "Recording 04", videoId: "LESSON_04_REC_04", pdf: "pdfs/lesson-04-rec-04.pdf" },
+      ]},
 
       // ── LESSON 05 ─────────────────────────────────────────────
       5: { title: "Lesson 05", recordings: [
@@ -636,7 +870,7 @@
         { title: "Recording 04", videoId: "LESSON_21_REC_04", pdf: "pdfs/lesson-21-rec-04.pdf" },
       ]},
 
-    }; /* ── END lessonData ─────────────────────────────────── */
+    };
 
 
     /* ── BUILD DROPDOWN OPTIONS ──────────────────────────────── */
@@ -711,6 +945,94 @@
       setTimeout(() => {
         contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 60);
+    });
+
+
+    /* ╔══════════════════════════════════════════════════════════╗
+       ║  CHATBOT FUNCTIONALITY                                   ║
+       ╚══════════════════════════════════════════════════════════╝ */
+
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotSend = document.getElementById('chatbotSend');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+
+    // Toggle chatbot window
+    chatbotToggle.addEventListener('click', () => {
+      chatbotWindow.classList.toggle('active');
+      if (chatbotWindow.classList.contains('active')) {
+        chatbotInput.focus();
+      }
+    });
+
+    // Close chatbot window
+    chatbotClose.addEventListener('click', () => {
+      chatbotWindow.classList.remove('active');
+    });
+
+    // Simple chatbot responses
+    const botResponses = {
+      'hello': 'Hi there! How can I help you today?',
+      'hi': 'Hello! Welcome to Sri Bodhirukkarama Dhamma School. What do you need help with?',
+      'help': 'I can help you with:\n• Lesson information\n• How to download PDFs\n• YouTube video access\n• General school questions',
+      'lessons': 'We have 21 lessons in total. Select any lesson from the dropdown above to view 4 recordings and study materials for each.',
+      'pdf': 'You can download PDF notes by clicking the "📄 Download Notes (PDF)" button on each recording card.',
+      'thank you': 'You\'re welcome! Is there anything else I can help you with?',
+      'thanks': 'Happy to help! Feel free to ask if you have more questions.',
+      'bye': 'Goodbye! Good luck with your studies! 📚',
+      'bye': 'See you later! Keep learning! 👋',
+      'default': 'Thanks for your message! I\'m here to help with lessons, PDFs, and school information. Feel free to ask!'
+    };
+
+    function getBotResponse(userMessage) {
+      const msg = userMessage.toLowerCase().trim();
+      
+      for (const [key, response] of Object.entries(botResponses)) {
+        if (msg.includes(key)) {
+          return response;
+        }
+      }
+      
+      return botResponses.default;
+    }
+
+    function addMessage(text, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+      
+      const bubble = document.createElement('div');
+      bubble.className = 'message-bubble';
+      bubble.textContent = text;
+      
+      messageDiv.appendChild(bubble);
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function sendMessage() {
+      const text = chatbotInput.value.trim();
+      
+      if (!text) return;
+      
+      addMessage(text, true);
+      chatbotInput.value = '';
+      
+      setTimeout(() => {
+        const response = getBotResponse(text);
+        addMessage(response, false);
+      }, 500);
+    }
+
+    // Send message on button click
+    chatbotSend.addEventListener('click', sendMessage);
+
+    // Send message on Enter key
+    chatbotInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
     });
 
   </script>
